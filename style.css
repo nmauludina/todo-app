@@ -67,4 +67,5 @@ li {
 
 td:nth-child(2), th:nth-child(2) {
     text-align: left;
+    padding-left: 15px;
 }

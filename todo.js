@@ -13,7 +13,6 @@ class App extends React.Component {
             showClickMeButton: false,
         }
         this.handleInput = this.handleInput.bind(this)
-        this.inputKeyup = this.inputKeyup(this)
     }
 
     componentDidMount() {
@@ -33,9 +32,10 @@ class App extends React.Component {
     }
 
     inputKeyup(e){
-        if (e.key === 'ENTER') {
-                e.preventDefault();
-                document.getElementById("btn-add").click();
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            e.preventDefault();
+            document.getElementById("btn-add").click();
+            return false
         }
     }
 
@@ -78,7 +78,7 @@ class App extends React.Component {
 
         let todoForm = (
             <form>
-                    <input type="text" name="todo" className="input-text" onChange={this.handleInput} onKeyPress={this.inputKeyup}></input>
+                    <input type="text" name="todo" className="input-text" onChange={this.handleInput} value={this.state.inputValue} onKeyDown={(e)=>this.inputKeyup(e)}></input>
                     <button id="btn-add" type="button" className="btn-add" onClick={() => this.handleButtonClicked()}>add</button>
                     <table id="list-todo">
                         <thead>
